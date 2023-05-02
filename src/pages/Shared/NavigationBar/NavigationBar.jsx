@@ -1,11 +1,20 @@
 import React, { useContext } from "react";
-import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Nav,
+  Navbar,
+  OverlayTrigger,
+} from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { Tooltip } from "react-bootstrap";
 
 const NavigationBar = () => {
   const { user, logOut } = useContext(AuthContext);
+
+  console.log(user);
 
   const handleLogOut = () => {
     logOut()
@@ -48,14 +57,21 @@ const NavigationBar = () => {
           </Nav>
 
           <Nav>
+           
             {user && (
-              <img
-                src={user.photoURL}
-                alt="Profile Picture"
-                className="rounded-circle mr-5"
-                style={{ width: "40px", height: "40px" }}
-              />
+              <OverlayTrigger
+                placement="bottom"
+                overlay={<Tooltip id="tooltip">{user.displayName}</Tooltip>}
+              >
+                <img
+                  className="rounded-circle mr-5"
+                  src={user.photoURL}
+                  alt="Profile Picture"
+                  style={{ width: "40px", height: "40px" }}
+                />
+              </OverlayTrigger>
             )}
+
             {user ? (
               <Button
                 onClick={handleLogOut}
@@ -75,7 +91,6 @@ const NavigationBar = () => {
               </Link>
             )}
           </Nav>
-
         </Navbar.Collapse>
       </Container>
     </Navbar>
