@@ -1,47 +1,80 @@
-import React, { useContext } from 'react';
-import { Button, Container, Nav, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { FaUserCircle } from 'react-icons/fa';
-import { AuthContext } from '../../../providers/AuthProvider';
+import React, { useContext } from "react";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { Link, NavLink } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const NavigationBar = () => {
 
-    const { user, logOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
-    const handleLogOut = () => {
-        logOut()
-            .then()
-            .catch(error => console.log(error));
-    }
+  const handleLogOut = () => {
+      logOut()
+          .then()
+          .catch(error => console.log(error));
+  }
 
-    return (
-        <Container>
-            <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-                <Container>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                    <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="mx-auto">
-                            <Link to="/category/0">Home</Link>
-                            <Nav.Link href="#pricing">About</Nav.Link>
-                            <Nav.Link href="#pricing">Career</Nav.Link>
-                        </Nav>
-                        <Nav>
-                            {
-                                user && <FaUserCircle style={{ fontSize: '2rem' }}></FaUserCircle>
-                            }
+  return (
+    <Navbar
+      className="sticky-top mb-3"
+      collapseOnSelect
+      expand="lg"
+      bg="light"
+      variant="light"
+    >
+      <Container>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav>
+            <img
+              style={{ width: "100px", height: "60px" }}
+              src="/src/assets/logo.png"
+              alt=""
+            />
+          </Nav>
 
-                            {user ?
-                                <Button onClick={handleLogOut} variant="secondary">Logout</Button> :
-                                <Link to="/login">
-                                    <Button variant="secondary">Login</Button>
-                                </Link>
-                            }
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
-        </Container>
-    );
+          <Nav className="mx-auto d-flex align-items-center gap-5">
+            <NavLink
+              to="/"
+              className="mr-5 text-decoration-none fw-bold text-dark"
+            >
+              Home
+            </NavLink>
+            <NavLink
+              className="text-decoration-none fw-bold text-dark"
+              to="/blogs"
+            >
+              Blogs
+            </NavLink>
+          </Nav>
+
+          <Nav>
+            {user && <FaUserCircle style={{ fontSize: "2rem" }}></FaUserCircle>}
+
+            {user ? (
+              <Button onClick={handleLogOut}
+                className="text-white border border1"
+                style={{ backgroundColor: "#ac2b31" }}
+              >
+                Logout
+              </Button>
+            ) : (
+              <Link to="/login">
+                <Button
+                  className="text-white border border1"
+                  style={{ backgroundColor: "#ac2b31" }}
+                >
+                  Login
+                </Button>
+              </Link>
+            )}
+          </Nav>
+
+
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 };
 
 export default NavigationBar;
