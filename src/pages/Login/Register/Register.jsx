@@ -1,12 +1,19 @@
 import React, { useContext } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from '../../../providers/AuthProvider';
 import { useState } from 'react';
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
     const [accepted, setAccepted] = useState(false);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    console.log("login page location", location);
+    const from = location.state?.from?.pathname || "/";
+
+    const [error, setError] = useState('');
 
     const handleRegister = event => {
         event.preventDefault();
@@ -16,13 +23,22 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
 
+        setError('');
+        if(password.length < 6) {
+            setError('Password must be at least 6 characters long');
+            return
+        }
+
         console.log(name, photo, email, password)
         createUser(email, password)
             .then(result => {
                 const createdUser = result.user;
                 console.log(createdUser);
+                setError('');
+                navigate(from, { replace: true });
             })
             .catch(error => {
+                setError(error.message);
                 console.log(error);
             })
     }
@@ -74,6 +90,9 @@ const Register = () => {
 
                 </Form.Text>
             </Form>
+
+            <p className="text-danger">{error}</p>
+
         </Container>
     );
 };
