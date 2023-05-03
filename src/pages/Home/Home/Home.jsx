@@ -1,6 +1,7 @@
 import React from 'react';
 import ChefCard from '../../Shared/ChefCard/ChefCard';
 import Banner from '../../Shared/Banner/Banner';
+import PopularRecipes from '../../Shared/PopularRecipes/PopularRecipes';
 
 const Home = () => {
     return (
@@ -8,6 +9,7 @@ const Home = () => {
 
             <Banner></Banner>
             <ChefCard></ChefCard>
+            <PopularRecipes></PopularRecipes>
         </div>
     );
 };

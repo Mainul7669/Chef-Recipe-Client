@@ -71,7 +71,7 @@ const ChefRecipes = () => {
             </div>
           </div>
           <h3 className="mt-5">Recipes</h3>
-          <hr className="w-50 " />
+          <hr style={{ color: "#ac2b31" }} className="w-50 " />
           <Row xs={1} md={2} lg={3} className="g-4">
             {chefData?.recipesList.slice(0, 3).map((recipe) => (
               <Col key={recipe.name}>
