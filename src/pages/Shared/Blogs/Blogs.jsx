@@ -47,7 +47,7 @@ const MyDoc = () => (
 const DownloadButton = () => (
   <PDFDownloadLink document={<MyDoc />} fileName="myBlog.pdf">
     {({ blob, url, loading, error }) =>
-      loading ? "Loading document..." : <div class="text-center mt-5">
+      loading ? "Loading document..." : <div className="text-center mt-5">
      <Button className="" variant="info">Download now!</Button>
     </div>
      
