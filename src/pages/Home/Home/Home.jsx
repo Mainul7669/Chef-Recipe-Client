@@ -1,10 +1,12 @@
 import React from 'react';
 import ChefCard from '../../Shared/ChefCard/ChefCard';
+import Banner from '../../Shared/Banner/Banner';
 
 const Home = () => {
     return (
         <div>
-            <h2>This is Home</h2>
+
+            <Banner></Banner>
             <ChefCard></ChefCard>
         </div>
     );

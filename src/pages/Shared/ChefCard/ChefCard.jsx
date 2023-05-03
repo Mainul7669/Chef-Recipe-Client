@@ -15,10 +15,10 @@ const ChefCard = () => {
 
   return (
     <div>
-      <h2>ChefCard </h2>
-      <div className="container">
-        <h2 className="text-center mb-4">Our Chefs</h2>
-        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+      <div className="container mt-5">
+        <h2 style={{ color: '#ac2b31' }} className="text-center mb-4 ">Our Chefs</h2>
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
           {chefs.map((chef) => (
             <div className="col" key={chef.id}>
               <Card>
@@ -37,7 +37,7 @@ const ChefCard = () => {
                     <br />
                     <strong>Likes:</strong> {chef.likes}
                   </Card.Text>
-                  <Button variant="primary">View Recipes</Button>
+                  <Button variant="info">View Recipes</Button>
                 </Card.Body>
               </Card>
             </div>
