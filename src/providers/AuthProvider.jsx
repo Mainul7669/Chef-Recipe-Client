@@ -1,4 +1,7 @@
 import React, { createContext } from 'react';
+import { Spinner } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -111,7 +114,19 @@ const AuthProvider = ({ children }) => {
     logOut,
   };
 
-  return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={authInfo}>
+      {loading ? (
+        <Spinner className="spinner-border text-success" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      ) : (
+        children // Remove curly braces
+      )}
+    </AuthContext.Provider>
+  );
+  
 };
+  
 
 export default AuthProvider;

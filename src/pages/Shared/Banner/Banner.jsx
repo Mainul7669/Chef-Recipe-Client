@@ -30,7 +30,7 @@ const Banner = () => {
               <img
                 className="img-fluid rounded-4 "
                 src="https://wp.missmalini.com/wp-content/uploads/2018/03/chef.jpg"
-                alt=""
+                loading="lazy"  alt=""
               />
             </div>
           </div>
