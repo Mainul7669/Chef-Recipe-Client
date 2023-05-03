@@ -10,6 +10,8 @@ import PrivateRoute from "./PrivateRoute";
 import Terms from "../pages/Shared/Terms/Terms";
 import Blogs from "../pages/Shared/Blogs/Blogs";
 import NotFound from "../pages/Shared/NotFound/NotFound";
+import ChefCard from "../pages/Shared/ChefCard/ChefCard";
+import ChefRecipes from "../pages/Shared/ChefRecipes/ChefRecipes";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +22,11 @@ const router = createBrowserRouter([
                 path: '/',
                 element: <Home></Home>
             },
+            {
+                path: 'ChefRecipes/:ChefId',
+                element: <ChefRecipes></ChefRecipes>,
+                loader: ({params}) => fetch(`http://localhost:5000/cuisine/${params.id}`)
+              },
             {
                 path: 'blogs',
                 element: <Blogs></Blogs>
@@ -44,6 +51,7 @@ const router = createBrowserRouter([
             }
         ]
     }
+      
 ])
 
 export default router;
