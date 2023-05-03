@@ -11,6 +11,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { Tooltip } from "react-bootstrap";
 
+
 const NavigationBar = () => {
   const { user, logOut } = useContext(AuthContext);
 
@@ -21,6 +22,15 @@ const NavigationBar = () => {
       .then()
       .catch((error) => console.log(error));
   };
+
+  const navLinkStyles = ({ isActive }) => {
+    return {
+      fontWeight: isActive ? 'bold' : 'normal',
+      textDecoration: 'none' ,
+      color: isActive ? 'red' : 'black',
+    }
+  }
+  
 
   return (
     <Navbar
@@ -42,14 +52,12 @@ const NavigationBar = () => {
           </Nav>
 
           <Nav className="mx-auto d-flex align-items-center gap-5">
-            <NavLink
+            <NavLink style={navLinkStyles} 
               to="/"
-              className="mr-5 text-decoration-none fw-bold text-dark"
             >
               Home
             </NavLink>
-            <NavLink
-              className="text-decoration-none fw-bold text-dark"
+            <NavLink style={navLinkStyles}
               to="/blogs"
             >
               Blogs

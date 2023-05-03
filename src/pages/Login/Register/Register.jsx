@@ -31,29 +31,16 @@ const Register = () => {
         }
     
         console.log(name, photo, email, password);
-        createUser(email, password)
-            .then(result => {
-                const createdUser = result.user;
-                console.log(createdUser);
-                setError('');
-    
-                // Set the photoURL property
-                createdUser.updateProfile({
-                    photoURL: photo
-                })
-                .then(() => {
-                    console.log("Profile updated successfully");
-                })
-                .catch(error => {
-                    console.log("Error updating profile:", error);
-                });
-    
-                navigate(from, { replace: true });
-            })
-            .catch(error => {
-                setError(error.message);
-                console.log(error);
-            })
+
+        createUser(email, password, name, photo)
+        .then(result => {
+            navigate(from, { replace: true });
+        })
+        .catch(error => {
+            setError(error.message);
+            console.log(error);
+        })
+
     }
     
 
