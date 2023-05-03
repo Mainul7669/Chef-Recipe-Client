@@ -15,6 +15,7 @@ const Register = () => {
 
     const [error, setError] = useState('');
 
+ 
     const handleRegister = event => {
         event.preventDefault();
         const form = event.target;
@@ -22,19 +23,31 @@ const Register = () => {
         const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
-
+    
         setError('');
         if(password.length < 6) {
             setError('Password must be at least 6 characters long');
-            return
+            return;
         }
-
-        console.log(name, photo, email, password)
+    
+        console.log(name, photo, email, password);
         createUser(email, password)
             .then(result => {
                 const createdUser = result.user;
                 console.log(createdUser);
                 setError('');
+    
+                // Set the photoURL property
+                createdUser.updateProfile({
+                    photoURL: photo
+                })
+                .then(() => {
+                    console.log("Profile updated successfully");
+                })
+                .catch(error => {
+                    console.log("Error updating profile:", error);
+                });
+    
                 navigate(from, { replace: true });
             })
             .catch(error => {
@@ -42,6 +55,9 @@ const Register = () => {
                 console.log(error);
             })
     }
+    
+
+
 
     const handleAccepted = event =>{
         setAccepted(event.target.checked)
