@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Card, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import LazyLoad from "react-lazy-load";
+import { BsFillHeartFill } from "react-icons/bs";
 
 const ChefCard = () => {
   const [chefs, setChefs] = useState([]);
@@ -10,7 +11,7 @@ const ChefCard = () => {
 
   useEffect(() => {
     // Fetch chefs data from API and set it to state
-    fetch("http://localhost:5000/cuisine")
+    fetch("https://assignment-10-server-one-kappa.vercel.app/cuisine")
       .then((response) => response.json())
       .then((data) => setChefs(data));
   }, []);
@@ -41,7 +42,7 @@ const ChefCard = () => {
                     <br />
                     <strong>Recipes:</strong> {chef.recipes}
                     <br />
-                    <strong>Likes:</strong> {chef.likes}
+                    <strong><BsFillHeartFill className="text-danger me-2"></BsFillHeartFill></strong> {chef.likes}
                   </Card.Text>
                   <Button
                     onClick={() => navigate(`ChefRecipes/${chef.id}`)}

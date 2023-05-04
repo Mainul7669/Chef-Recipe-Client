@@ -4,6 +4,8 @@ import { Container, Row, Col, Card, Button, Toast } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LazyLoad from "react-lazy-load";
+import { FaStar } from "react-icons/fa";
+import { BsFillHeartFill } from "react-icons/bs";
 
 const ChefRecipes = () => {
   const { ChefId } = useParams();
@@ -14,7 +16,7 @@ const ChefRecipes = () => {
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/cuisine")
+    fetch("https://assignment-10-server-one-kappa.vercel.app/cuisine")
       .then((response) => response.json())
       .then((data) => {
         const chef = data.find((job) => job.id === ChefId);
@@ -30,7 +32,6 @@ const ChefRecipes = () => {
   };
 
   return (
-    
     <div className="mb-5 mt-5">
       {isLoading ? (
         <div className="d-flex justify-content-center my-5">
@@ -49,7 +50,7 @@ const ChefRecipes = () => {
                 <hr className="w-50 " />
               </div>
               <p className="fw-light">{chefData?.bio}</p>
-              <p className="fw-light">Likes: {chefData?.likes}</p>
+              <p className="fw-light"><BsFillHeartFill className="text-danger me-2"></BsFillHeartFill>{chefData?.likes}</p>
               <p className="fw-light">
                 Number of Recipes: {chefData?.recipesList.length}
               </p>
@@ -57,7 +58,7 @@ const ChefRecipes = () => {
                 Years of Experience: {chefData?.experience}
               </p>
             </div>
-            
+
             <div className="col-12 col-md-6 sm-12 ms-6">
               <LazyLoad offsetVertical={500} debounce={false}>
                 <img
@@ -67,12 +68,13 @@ const ChefRecipes = () => {
                   alt=""
                 />
               </LazyLoad>
-                
             </div>
           </div>
+
+          <div>
           <h3 className="mt-5">Recipes</h3>
           <hr style={{ color: "#ac2b31" }} className="w-50 " />
-          <Row xs={1} md={2} lg={3} className="g-4">
+          <Row xs={1} md={2} lg={3} className="g-4 ">
             {chefData?.recipesList.slice(0, 3).map((recipe) => (
               <Col key={recipe.name}>
                 <Card>
@@ -88,10 +90,20 @@ const ChefRecipes = () => {
                           ))}
                       </ul>
                       <div>
-                      <p className="fw-bold">Cooking Method:</p>
+                        <p className="fw-bold">Cooking Method:</p>
                         <p>{recipe.cookingMethod}</p>
-                        <p>Rating: {recipe.rating}</p>
                       </div>
+
+                      <div className=" d-flex align-items-center gap-2">
+                        <span className="text-warning">
+                          <FaStar></FaStar> 
+                          <FaStar></FaStar>
+                          </span>
+
+                           {recipe.rating}
+                          
+                      </div>
+
                     </Card.Text>
 
                     <Button
@@ -120,6 +132,8 @@ const ChefRecipes = () => {
             draggable
             pauseOnHover
           />
+
+</div>
         </div>
       )}{" "}
     </div>

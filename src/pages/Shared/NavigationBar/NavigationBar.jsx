@@ -10,7 +10,7 @@ import { Link, NavLink } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { Tooltip } from "react-bootstrap";
-
+import '../../../assets/logo.png'
 
 const NavigationBar = () => {
   const { user, logOut } = useContext(AuthContext);

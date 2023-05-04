@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../pages/Shared/Header/Header';
 import Footer from '../pages/Shared/Footer/Footer';
 import { Col, Container, Row } from 'react-bootstrap';
 
@@ -9,7 +8,6 @@ import NavigationBar from '../pages/Shared/NavigationBar/NavigationBar';
 const Main = () => {
     return (
         <div>
-            <Header></Header>
             <NavigationBar></NavigationBar>
 
                         <Outlet></Outlet>
