@@ -6,13 +6,14 @@ import { FaGoogle, FaGithub } from "react-icons/fa";
 import { useState } from "react";
 
 const Login = () => {
-  const { signIn, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+  const { signIn, signInWithGoogle, signInWithGithub } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   console.log("login page location", location);
   const from = location.state?.from?.pathname || "/";
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -25,7 +26,7 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        setError('');
+        setError("");
         form.reset();
         navigate(from, { replace: true });
       })
@@ -37,34 +38,34 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
-    .then(result => {
+      .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        setError('');
+        setError("");
         navigate(from, { replace: true });
-    })
-    .catch(error => {
+      })
+      .catch((error) => {
         setError(error.message);
-        console.log(error)
-    })
-}
-  
-const handleGithubSignIn = () => {
+        console.log(error);
+      });
+  };
+
+  const handleGithubSignIn = () => {
     signInWithGithub()
-    .then(result => {
+      .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        setError('');
+        setError("");
         navigate(from, { replace: true });
-    })
-    .catch(error => {
+      })
+      .catch((error) => {
         setError(error.message);
-        console.log(error)
-    })
-}
+        console.log(error);
+      });
+  };
 
   return (
-    <Container className="w-25 mx-auto">
+    <Container className="w-50 mx-auto">
       <h3>Please Login</h3>
       <Form onSubmit={handleLogin}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -100,7 +101,7 @@ const handleGithubSignIn = () => {
 
       <p className="text-danger">{error}</p>
 
-      <div className="d-flex  align-items-center gap-2 mt-3">
+      <div className="d-flex flex-column flex-md-row justify-content-md-center align-items-center gap-3 mt-3">
         <Button onClick={handleGoogleSignIn} variant="outline-primary">
           {" "}
           <FaGoogle /> Login with Google
@@ -110,7 +111,6 @@ const handleGithubSignIn = () => {
           <FaGithub></FaGithub> Login with Github
         </Button>
       </div>
-
     </Container>
   );
 };
