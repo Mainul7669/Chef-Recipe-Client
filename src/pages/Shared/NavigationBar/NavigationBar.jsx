@@ -10,7 +10,6 @@ import { Link, NavLink } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { Tooltip } from "react-bootstrap";
-import '../../../assets/logo.png'
 
 const NavigationBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -46,7 +45,7 @@ const NavigationBar = () => {
           <Nav>
             <img
               style={{ width: "100px", height: "60px" }}
-              src="/src/assets/logo.png"
+              src="https://www.saffronspice.co.nz/wp-content/uploads/2021/04/logo.png"
               alt=""
             />
           </Nav>
