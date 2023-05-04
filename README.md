@@ -1,6 +1,6 @@
-##Saffron Spice
+#  Saffron Spice
 
-##Live site link: https://chef-recipe-client-333f6.web.app/
+## Live site link: https://chef-recipe-client-333f6.web.app/
 
 Saffron Spice is a web application where users can view their favorite chefs bio and their recipes.
 
@@ -15,9 +15,9 @@ Features:
 8) Mobile and Desktop -responsive design.
 
 Tools used:
-React.js
-Firebase Authentication
-React Router DOM
-Node.js
+React.js,
+Firebase Authentication,
+React Router DOM,
+Node.js,
 Express.js
 
