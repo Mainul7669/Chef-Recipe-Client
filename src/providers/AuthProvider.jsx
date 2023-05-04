@@ -117,9 +117,12 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={authInfo}>
       {loading ? (
-        <Spinner className="spinner-border text-success" role="status">
+        <div className="d-flex justify-content-center mt-5">
+        <Spinner className=" spinner-border text-success" role="status">
           <span className="visually-hidden">Loading...</span>
         </Spinner>
+        </div>
+        
       ) : (
         children // Remove curly braces
       )}
